@@ -18,7 +18,7 @@
 
 ## contoh main.js menggunakan jscroot
 ```
-import { getSystemInfo } from "./index.js"
+import { getSystemInfo } from "https://cdn.jsdelivr.net/gh/domyid/tracker@1.0.0/index.js"
 import { runAfterDOM } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.1.6/element.js";
 
 runAfterDOM(getSystemInfo);
@@ -26,7 +26,7 @@ runAfterDOM(getSystemInfo);
 
 ## contoh main.js menggunakan document
 ```
-import { getSystemInfo } from "./index.js"
+import { getSystemInfo } from "https://cdn.jsdelivr.net/gh/domyid/tracker@1.0.0/index.js"
 
 document.addEventListener("DOMContentLoaded", function() {
     getSystemInfo();

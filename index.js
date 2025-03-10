@@ -34,7 +34,6 @@ export function getSystemInfo() {
             "hostname": hostname,
             "browser": navigator.userAgent
         }
-        console.log(datajson);
         postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction)
     })
     .catch(error => {
