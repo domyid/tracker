@@ -4,5 +4,5 @@ Tracker adalah solusi yang dirancang untuk melacak unique visitor harian. Dengan
 ## Cara implementasi
 Penggunaan dapat dilakukan dengan mudah, hanya dengan meletakkan script di bagian header tag web anda
 ```
-<script src="https://cdn.jsdelivr.net/gh/domyid/tracker@1.0.2/index.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/gh/domyid/tracker@1.0.2/index.js"></script>
 ```
