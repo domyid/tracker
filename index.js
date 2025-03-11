@@ -21,26 +21,6 @@ function postBiasa(target_url,datajson,responseFunction){
         .catch(error => console.log('error', error));
 }
 
-
-export function getSystemInfo() {
-    fetch("https://api.ipify.org?format=json")
-    .then(response => response.json())
-    .then(data => {
-        let ip = data.ip;
-        let hostname = window.location.hostname;
-
-        let datajson = {
-            "ipv4": ip,
-            "hostname": hostname,
-            "browser": navigator.userAgent
-        }
-        postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction)
-    })
-    .catch(error => {
-        console.error("Error mengambil ip dari ipify:", error);
-    });
-}
-
 function responseFunction(result) {
     if (result.status == 200) {
         console.log("Berhasil")
@@ -48,3 +28,26 @@ function responseFunction(result) {
         console.log("Error")
     }
 }
+
+function getSystemInfo() {
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("https://api.ipify.org?format=json")
+        .then(response => response.json())
+        .then(data => {
+            let ip = data.ip;
+            let hostname = window.location.hostname;
+
+            let datajson = {
+                "ipv4": ip,
+                "hostname": hostname,
+                "browser": navigator.userAgent
+            }
+            postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction)
+        })
+        .catch(error => {
+            console.error("Error mengambil ip dari ipify:", error);
+        });
+    });
+}
+
+getSystemInfo();
