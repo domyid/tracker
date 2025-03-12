@@ -29,12 +29,11 @@ const responseFunction = ({ status }) => {
 
 const getSystemInfo = async () => {
     document.addEventListener("DOMContentLoaded", async () => {
+        if (getCookie("absen")) {
+            console.log("Data sudah dikirim dalam 24 jam terakhir, tidak mengirim ulang.");
+            return;
+        }
         try {
-            if (getCookie("absen")) {
-                console.log("Data sudah dikirim dalam 24 jam terakhir, tidak mengirim ulang.");
-                return;
-            }
-    
             const response = await fetch("https://api.ipify.org?format=json");
             const { ip } = await response.json();
             const hostname = window.location.hostname;
