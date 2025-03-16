@@ -36,13 +36,27 @@ const getSystemInfo = async () => {
         try {
             const response = await fetch("https://api.ipify.org?format=json");
             const { ip } = await response.json();
-            const hostname = window.location.hostname;
+            let hostnameWeb = window.location.hostname;
+            const urlHref = window.location.href;
+            let datajson
 
-            const datajson = {
-                ipv4: ip,
-                hostname,
-                browser: navigator.userAgent
-            };
+            if (hostnameWeb === "t.if.co.id") {
+                const pathname = window.location.pathname;
+                hostnameWeb = `${hostnameWeb}${pathname}`;
+                datajson = {
+                    ipv4: ip,
+                    hostname: hostnameWeb,
+                    url: urlHref,
+                    browser: navigator.userAgent
+                };
+            } else {
+                datajson = {
+                    ipv4: ip,
+                    hostname: hostnameWeb,
+                    url: urlHref,
+                    browser: navigator.userAgent
+                };
+            }
 
             await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
             setCookieWithExpireHour("absen", "true", 24);
