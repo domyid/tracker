@@ -27,6 +27,11 @@ const responseFunction = ({ status }) => {
     console.log(status === 200 ? "Berhasil" : "Error");
 };
 
+function getMetaAuthor() {
+    const metaTag = document.querySelector('meta[name="author"]');
+    return metaTag ? metaTag.content : 'Meta author tidak ditemukan';
+}
+
 const getSystemInfo = async () => {
     document.addEventListener("DOMContentLoaded", async () => {
         if (getCookie("absen")) {
@@ -45,6 +50,7 @@ const getSystemInfo = async () => {
                 hostnameWeb = `${hostnameWeb}${pathname}`;
                 datajson = {
                     ipv4: ip,
+                    author: getMetaAuthor(),
                     hostname: hostnameWeb,
                     url: urlHref,
                     browser: navigator.userAgent
@@ -52,6 +58,7 @@ const getSystemInfo = async () => {
             } else {
                 datajson = {
                     ipv4: ip,
+                    author: getMetaAuthor(),
                     hostname: hostnameWeb,
                     url: urlHref,
                     browser: navigator.userAgent
