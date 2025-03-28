@@ -55,6 +55,7 @@ const getSystemInfo = async () => {
                     url: urlHref,
                     browser: navigator.userAgent
                 };
+                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
             } else {
                 datajson = {
                     ipv4: ip,
@@ -63,10 +64,9 @@ const getSystemInfo = async () => {
                     url: urlHref,
                     browser: navigator.userAgent
                 };
+                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
+                setCookieWithExpireHour("absen", "true", 24);
             }
-
-            await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
-            setCookieWithExpireHour("absen", "true", 24);
         } catch (error) {
             console.error("Error mengambil IP dari ipify:", error);
         }
