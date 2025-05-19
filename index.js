@@ -1,4 +1,5 @@
 import { getCookie, setCookieWithExpireHour } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.6/cookie.js";
+import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.2.6/api.js";
 
 const postBiasa = async (target_url, datajson, responseFunction) => {
     try {
@@ -17,24 +18,15 @@ const postBiasa = async (target_url, datajson, responseFunction) => {
         const status = response.status;
         const result = await response.json();
 
-        responseFunction({ status, data: result });
+        responseFunction({ status, data: result, originalData: datajson });
     } catch (error) {
         console.error('Error:', error);
     }
 };
 
-const responseFunction = ({ status }) => {
-    console.log(status === 200 ? "Berhasil" : "Error");
-};
-
-function getMetaAuthor() {
-    const metaTag = document.querySelector('meta[name="author"]');
-    return metaTag ? metaTag.content : 'Meta author tidak ditemukan';
-}
-
 const getSystemInfo = async () => {
     document.addEventListener("DOMContentLoaded", async () => {
-        if (getCookie("absen")) {
+        if (getCookie("Tracker")) {
             console.log("Data sudah dikirim dalam 24 jam terakhir, tidak mengirim ulang.");
             return;
         }
@@ -50,27 +42,44 @@ const getSystemInfo = async () => {
                 hostnameWeb = `${hostnameWeb}${pathname}`;
                 datajson = {
                     ipv4: ip,
-                    author: getMetaAuthor(),
                     hostname: hostnameWeb,
                     url: urlHref,
                     browser: navigator.userAgent
                 };
-                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
+                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker/token", datajson, responseFunction);
             } else {
                 datajson = {
                     ipv4: ip,
-                    author: getMetaAuthor(),
                     hostname: hostnameWeb,
                     url: urlHref,
                     browser: navigator.userAgent
                 };
-                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", datajson, responseFunction);
-                setCookieWithExpireHour("absen", "true", 24);
+                await postBiasa("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker/token", datajson, responseFunction);
             }
         } catch (error) {
             console.error("Error mengambil IP dari ipify:", error);
         }
     });
 };
+
+function responseFunction(result) {
+    if (result.status == 200) {
+        setCookieWithExpireHour("Tracker", result.data.response, 24);
+
+        const trackerToken = getCookie("Tracker");
+        if (trackerToken) {
+            postJSON("https://asia-southeast2-awangga.cloudfunctions.net/domyid/api/tracker", result.originalData, responseFunction2, "Tracker", trackerToken
+            );
+        }
+    }
+}
+
+function responseFunction2(result) {
+    if (result.status == 200) {
+        console.log("Berhasil")
+    } else {
+        console.log("Error")
+    }
+}
 
 getSystemInfo();
