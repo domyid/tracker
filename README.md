@@ -47,6 +47,20 @@ Isi form project seperti mengisi project biasanya, bedanya jika anda ingin menda
 
 ---
 
+## 5. Daftarkan Nomor Whatsapp
+
+Langkah terakhir adalah mendaftarkan **nomor WhatsApp setiap user yang terlibat dalam proyek**, termasuk **nomor Anda sendiri**.
+
+> ⚠️ **Penting:**  
+> Saat Anda membuat project, sistem akan secara otomatis mendaftarkan Anda sebagai **Owner**, bukan **Member**.  
+> Namun, **tracker hanya membaca data dari Member**, bukan Owner.
+
+Klik tombol **+ Add member** dan isi form **Nomor Telepon Calon Member**
+
+![Add member](img/image-7.png)
+
+---
+
 Dengan mengikuti langkah-langkah di atas, kamu akan dapat mendaftarkan tracker ke dashboad **do.my.id**.
 
 # 📊 Panduan Melihat Data Unique Visitor
