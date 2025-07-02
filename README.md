@@ -103,18 +103,27 @@ Ikuti langkah-langkah berikut untuk mengambil data dari Google Search Console:
 
 ---
 
-## 1. Login ke Aplikasi
+## 1. Menu Performa
 
-Masuk ke menu Performa:
+Data dapat didapatkan di menu performa:
 
 ![Menu google search console](img/image-8.png)
 
 ---
 
-## 2. Login ke Aplikasi
+## 2. Rentang Waktu
 
-Pilih rentang waktu 3 bulan dan export dalam format csv:
+Pilih selengkapnya dan rentang waktu dari tanggal 2025-06-01 samapi dengan tanggal 2025-06-30:
 
-![Export csv 3 bulan](img/image-9.png)
+![Selengkapnya](img/image-9.png)
+![Rentang waktu](img/image-10.png)
+
+---
+
+## 3. Export
+
+Tekan tombol export kemudian pilih Download CSV, nanti akan ada pilihan untuk mendownload file dalam format zip yang berisi file csv:
+
+![Download csv](img/image-11.png)
 
 ---
