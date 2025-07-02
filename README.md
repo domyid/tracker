@@ -96,3 +96,25 @@ Gunakan pemilih tanggal untuk memilih **range waktu** yang ingin kamu tampilkan 
 ---
 
 Dengan mengikuti langkah-langkah di atas, kamu akan dapat melihat visualisasi *unique visitor* berdasarkan waktu yang dipilih.
+
+# Panduan Export Data Google Search Console
+
+Ikuti langkah-langkah berikut untuk mengambil data dari Google Search Console:
+
+---
+
+## 1. Login ke Aplikasi
+
+Masuk ke menu Performa:
+
+![Menu google search console](img/image-8.png)
+
+---
+
+## 2. Login ke Aplikasi
+
+Pilih rentang waktu 3 bulan dan export dalam format csv:
+
+![Export csv 3 bulan](img/image-9.png)
+
+---
